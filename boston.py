@@ -37,7 +37,7 @@ plt.xticks(rotation=0)
 plt.show()
 
 # 線性回歸模型預測房價
-X = boston_data.drop('MEDV', axis=1)  # 移除目標變數
+X = boston_data.drop(['MEDV', 'Rounded_RM'], axis=1)  # 移除目標變數和新增欄位
 y = boston_data['MEDV']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 model = LinearRegression()
@@ -49,3 +49,14 @@ mse = mean_squared_error(y_test, y_pred)
 r2 = r2_score(y_test, y_pred)
 print("均方誤差 (MSE):", mse)
 print("R2 分數:", r2)
+
+# 列出最高房價、最低房價、平均房價和中位數房價
+max_price = boston_data['MEDV'].max()
+min_price = boston_data['MEDV'].min()
+mean_price = boston_data['MEDV'].mean()
+median_price = boston_data['MEDV'].median()
+
+print("最高房價:", max_price)
+print("最低房價:", min_price)
+print("平均房價:", mean_price)
+print("中位數房價:", median_price)
